@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallelism-job
+spec:
+  completions: 5
+  parallelism: 3
+  template:
+    metadata:
+      labels:
+        app: parallelism-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - image: namtx/batch-job
+          name: main
+
